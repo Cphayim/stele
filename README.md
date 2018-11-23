@@ -4,10 +4,10 @@
 
 ```
 .
-├── week-01
-│   ├── note
-│   ├── proj
-│   └── test
+├── week-01 # 每周目录
+│   ├── note # 学习笔记
+│   ├── proj # 作业或小项目
+│   └── test # 测试题
 ├── week-02
 ├── week-03
 ├── week-04

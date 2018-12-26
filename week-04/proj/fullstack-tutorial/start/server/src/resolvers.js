@@ -85,7 +85,7 @@ export default {
   User: {
     trips: async (_, __, { dataSources }) => {
       // 获取当前用户的所有 launchId
-      const launchIds = await dataSources.userAPI.getlaunchIdsByUser();
+      const launchIds = await dataSources.userAPI.getLaunchIdsByUser();
 
       if (!launchIds.length) return [];
 

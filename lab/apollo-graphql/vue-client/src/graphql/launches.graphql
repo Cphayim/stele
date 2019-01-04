@@ -1,0 +1,10 @@
+query GetLaunchesList($after: String) {
+  launches(after: $after) {
+    cursor
+    hasMore
+    launches {
+      id
+      site
+    }
+  }
+}

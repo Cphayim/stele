@@ -1,3 +1,6 @@
+const path = require('path');
+const os = require('os');
+
 module.exports = {
   apps: [
     {
@@ -71,9 +74,9 @@ module.exports = {
         PORT: 3000,
         NODE_ENV: 'development'
       },
-      env_production: {
+      env_test: {
         // 测试环境变量，通过 --env production 启动
-        NODE_ENV: 'testing'
+        NODE_ENV: 'test'
       },
       env_production: {
         // 生产环境变量，通过 --env production 启动
@@ -87,24 +90,25 @@ module.exports = {
    */
   deploy: {
     test: {
-      key: '/Users/Cphayim/.ssh/keys/local_ubuntu.key',
+      key: path.resolve(os.homedir(), '.ssh/keys/local_ubuntu.key'),
       user: 'cphayim',
       host: ['10.211.55.7'],
       ssh_options: 'StrictHostKeyChecking=no',
       // GIT remote
-      repo: "git@github.com:Cphayim/stele.git",
+      repo: 'git@github.com:Cphayim/stele.git',
       // GIT remote/branch
-      ref: "origin/dev",
+      ref: 'origin/dev',
       // 目录路径
-      path: "/data/stele",
+      path: '/data/stele',
       // Setup: 在 GIT pull 之前执行的命令
-      'pre-setup': "ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts",
+      'pre-setup': 'ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts',
       // Setup: 在 GIT pull 成功后执行的命令
-      'post-setup': "pwd",
-      // pre-deploy action
-      'pre-deploy-local': "echo '开始部署'; pwd",
+      'post-setup': 'pwd',
+      // Deploy: 部署开始前的命令（本机！！！）
+      'pre-deploy-local': "echo '开始部署'",
       // post-deploy action
-      'post-deploy': "cd laboratory/node-pm2-nginx && npm install && pm2 restart ecosystem.config.js",
+      'post-deploy':
+        'cd laboratory/node-pm2-nginx && npm install && pm2 startOrRestart ecosystem.config.js --env test'
     },
     production: {
       user: 'node',

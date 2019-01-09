@@ -8,6 +8,7 @@ module.exports = {
       script: './app.js',
       // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
       // args: 'one two',
+      port: 3000, // process.env.PROT
       // 应用实例数，max 为 CPU 核心数
       instances: 'max',
       // 是否崩溃自动重启
@@ -71,7 +72,7 @@ module.exports = {
        */
       env: {
         // 默认环境变量
-        PORT: 3000,
+        // PORT: 3000,
         NODE_ENV: 'development'
       },
       env_test: {

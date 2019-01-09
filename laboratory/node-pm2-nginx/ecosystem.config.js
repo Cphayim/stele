@@ -72,7 +72,11 @@ module.exports = {
         NODE_ENV: 'development'
       },
       env_production: {
-        // 生产模式环境变量，通过 --env production 启动
+        // 测试环境变量，通过 --env production 启动
+        NODE_ENV: 'testing'
+      },
+      env_production: {
+        // 生产环境变量，通过 --env production 启动
         NODE_ENV: 'production'
       }
     }
@@ -87,19 +91,18 @@ module.exports = {
       user: 'cphayim',
       host: ['10.211.55.7'],
       ssh_options: 'StrictHostKeyChecking=no',
+      // GIT remote
+      repo: "git@github.com:Cphayim/stele.git",
       // GIT remote/branch
       ref: "origin/dev",
-      // GIT remote
-      repo: "https://github.com/Cphayim/stele.git",
-      // path in the server
-      path: "/home/cphayim/data/stele",
-      // Pre-setup command or path to a script on your local machine
-      'pre-setup': "echo '本地'; ls -la",
-      // Post-setup commands or path to a script on the host machine
-      // eg: placing configurations in the shared dir etc
-      'post-setup': "echo '远程'; ls -la",
+      // 目录路径
+      path: "/data/stele",
+      // Setup: 在 GIT pull 之前执行的命令
+      'pre-setup': "ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts",
+      // Setup: 在 GIT pull 成功后执行的命令
+      'post-setup': "pwd",
       // pre-deploy action
-      'pre-deploy-local': "echo '开始部署'",
+      'pre-deploy-local': "echo '开始部署'; pwd",
       // post-deploy action
       'post-deploy': "cd laboratory/node-pm2-nginx && npm install && pm2 restart ecosystem.config.js",
     },

@@ -76,16 +76,40 @@ module.exports = {
         NODE_ENV: 'production'
       }
     }
-  ]
+  ],
 
-  // deploy : {
-  //   production : {
-  //     user : 'node',
-  //     host : '212.83.163.1',
-  //     ref  : 'origin/master',
-  //     repo : 'git@github.com:repo.git',
-  //     path : '/var/www/production',
-  //     'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
-  //   }
-  // }
+  /**
+   * 部署相关配置
+   */
+  deploy: {
+    test: {
+      key: '/Users/Cphayim/.ssh/keys/local_ubuntu.key',
+      user: 'cphayim',
+      host: ['10.211.55.7'],
+      ssh_options: 'StrictHostKeyChecking=no',
+      // GIT remote/branch
+      ref: "origin/dev",
+      // GIT remote
+      repo: "https://github.com/Cphayim/stele.git",
+      // path in the server
+      path: "/home/cphayim/data/stele",
+      // Pre-setup command or path to a script on your local machine
+      'pre-setup': "echo '本地'; ls -la",
+      // Post-setup commands or path to a script on the host machine
+      // eg: placing configurations in the shared dir etc
+      'post-setup': "echo '远程'; ls -la",
+      // pre-deploy action
+      'pre-deploy-local': "echo '开始部署'",
+      // post-deploy action
+      'post-deploy': "cd laboratory/node-pm2-nginx && npm install && pm2 restart ecosystem.config.js",
+    },
+    production: {
+      user: 'node',
+      host: '212.83.163.1',
+      ref: 'origin/master',
+      repo: 'git@github.com:repo.git',
+      path: '/var/www/production',
+      'post-deploy': 'npm install && pm2 reload ecosystem.config.js --env production'
+    }
+  }
 };

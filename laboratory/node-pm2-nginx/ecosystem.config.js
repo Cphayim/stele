@@ -1,3 +1,10 @@
+/*
+ * @Description: PM2 生态系统配置
+ * @Author: Cphayim
+ * @Date: 2019-01-11 21:06:40
+ * @LastEditors: Cphayim
+ * @LastEditTime: 2019-01-12 02:46:16
+ */
 const path = require('path');
 const os = require('os');
 
@@ -10,11 +17,11 @@ module.exports = {
       // args: 'one two',
       port: 3000, // process.env.PROT
       // 应用实例数，max 为 CPU 核心数
-      instances: 'max',
+      instances: 1,
       // 是否崩溃自动重启
       autorestart: true,
       // 是否观察文件变动重启应用
-      watch: false,
+      watch: true,
       // 忽略的目录或文件
       ignore_watch: ['./node_modules'],
       // 最大内存占用，超过则重启应用，防止内存泄漏
@@ -56,7 +63,7 @@ module.exports = {
        * @see https://pm2.io/doc/en/runtime/best-practices/graceful-shutdown
        */
       // pm2 在发出 SIGINT 信号通知应用退出到发出 SIGKILL 信号杀死进程的时间间隔
-      kill_timeout: 1600,
+      kill_timeout: 1000,
 
       /**
        * 启动相关配置

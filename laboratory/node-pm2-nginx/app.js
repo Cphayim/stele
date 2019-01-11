@@ -1,10 +1,24 @@
+/*
+ * @Description: 项目服务入口
+ * @Author: Cphayim
+ * @Date: 2019-01-11 21:07:06
+ * @LastEditors: Cphayim
+ * @LastEditTime: 2019-01-12 02:43:46
+ */
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.disable('x-powered-by');
+
 app.get('/', (req, res) => {
   res.send('Hello world!');
 });
+
+app.get('/hello', (req, res) => {
+  res.json(req.query);
+});
+
 
 /**
  * 优雅的部署

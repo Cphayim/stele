@@ -1,0 +1,16 @@
+{% extends '../_layout/home/home.html' %}
+{% block content %}
+  {% include '../_components/nav.html' %}
+  <h1>待办事项</h1>
+  <ul class="list">
+    {% for item in todoList %}
+    <li>{{item.name}} ------ {{item.time | timeFormat}}</li>
+    {% endfor %}
+  </ul>
+  <!-- 背景图 -->
+  <h3>背景图</h3>
+  <div class="avatar"></div>
+  <!-- 图片 -->
+  <h3>图片</h3>
+  <img src="/images/avatar.png" width="100" height="100">
+{% endblock %}

@@ -5,7 +5,7 @@ import {
   getChangeInputAction,
   getAddItemAction,
   getDeleteItemAction,
-  getTodoList
+  getInitList
 } from './store/action'
 import TodoListUI from './TodoListUI'
 
@@ -17,7 +17,7 @@ export default class TodoList extends Component {
   }
 
   componentDidMount() {
-    const action = getTodoList()
+    const action = getInitList()
     store.dispatch(action)
   }
 

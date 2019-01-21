@@ -1,7 +1,4 @@
-import axios from 'axios'
-import Mock from 'mockjs'
-
-import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM, INIT_TODO_LIST } from './actionTypes'
+import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM, INIT_TODO_LIST, GET_INIT_LIST } from './actionTypes'
 
 export const getChangeInputAction = value => ({
   type: CHANGE_INPUT_VALUE,
@@ -22,23 +19,6 @@ export const getInitListAction = list => ({
   list
 })
 
-export const getTodoList = () => {
-  return (dispatch) =>{
-    Mock.mock(/\/list.json$/, {
-      code: 0,
-      message: 'ok',
-      timestamp: Date.now(),
-      'data|0-100': ['@FIRST @FIRST @FIRST @FIRST']
-    })
-    axios
-      .get('/list.json')
-      .then(res => {
-        console.log(res)
-        const action = getInitListAction(res.data.data)
-        dispatch(action)
-      })
-      .catch(err => {
-        console.error(err)
-      })
-  }
-}
+export const getInitList = () => ({
+  type: GET_INIT_LIST
+})

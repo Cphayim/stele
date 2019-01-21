@@ -1,26 +1,24 @@
-import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM, INIT_TODO_LIST } from './actionTypes'
+import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM } from './actionTypes'
 
 const defaultState = {
   inputValue: '',
   list: []
 }
 
-// reducer 可以接收 state，但绝不能修改 state
-export default (state = defaultState, action) => {
-  // console.log(state, action)
-  // 创建一个深拷贝的对象
+export default (state = defaultState, { type, payload = {} }) => {
   const newState = JSON.parse(JSON.stringify(state))
-  if (action.type === CHANGE_INPUT_VALUE) {
-    newState.inputValue = action.value
-  } else if (action.type === ADD_TODO_ITEM) {
-    if (newState.inputValue) {
-      newState.list.push(newState.inputValue)
+  switch (type) {
+    case CHANGE_INPUT_VALUE:
+      newState.inputValue = payload.value
+      break
+    case ADD_TODO_ITEM:
+      newState.inputValue && newState.list.push(newState.inputValue)
       newState.inputValue = ''
-    }
-  } else if (action.type === DELETE_TODO_ITEM) {
-    newState.list.splice(action.index, 1)
-  } else if (action.type === INIT_TODO_LIST) {
-    newState.list = action.list
+      break
+    case DELETE_TODO_ITEM:
+      newState.list.splice(payload.index, 1)
+      break
+    default:
   }
   return newState
 }

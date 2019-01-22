@@ -14,7 +14,7 @@ function TodoList(props) {
   const { inputValue, list, handleInputChange, handleAddItem, handleDeleteItem } = props
   return (
     <Container>
-      <InputWrap style={{ display: 'flex' }}>
+      <InputWrap>
         <Input value={inputValue} onChange={handleInputChange} onPressEnter={handleAddItem} />
         <Button style={{ marginLeft: '10px' }} type="primary" onClick={handleAddItem}>
           提交
@@ -67,12 +67,12 @@ export default connect(
   mapDispatchToProps
 )(TodoList)
 
-const Container = styled('div')({
-  maxWidth: '800px',
-  margin: '20px auto'
-})
+const Container = styled.div`
+  max-width: 800px;
+  margin: 20px auto;
+`
 
-const InputWrap = styled('div')({
-  display: 'flex',
-  marginBottom: '10px'
-})
+const InputWrap = styled.div`
+  display: flex;
+  margin-bottom: 10px;
+`

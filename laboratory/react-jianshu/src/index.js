@@ -1,3 +1,10 @@
+/*
+ * @Author: Cphayim
+ * @Date: 1985-10-26 16:15:00
+ * @LastEditors: Cphayim
+ * @LastEditTime: 2019-01-23 03:19:19
+ * @Description:
+ */
 import React from 'react'
 import ReactDOM from 'react-dom'
 import 'normalize.css'

@@ -1,3 +1,10 @@
+/*
+ * @Author: Cphayim
+ * @Date: 1985-10-26 16:15:00
+ * @LastEditors: Cphayim
+ * @LastEditTime: 2019-01-23 03:24:05
+ * @Description: 全局样式文件
+ */
 import React, { Fragment } from 'react'
 import { createGlobalStyle } from 'styled-components'
 

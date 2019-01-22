@@ -1,3 +1,10 @@
+/*
+ * @Author: Cphayim
+ * @Date: 2019-01-22 17:06:32
+ * @LastEditors: Cphayim
+ * @LastEditTime: 2019-01-23 03:29:42
+ * @Description: Header 依赖的样式组件
+ */
 import styled from 'styled-components'
 import logoPic from '../../assets/logo.png'
 
@@ -93,6 +100,9 @@ export const NavSearch = styled.input.attrs({
   &:focus {
     width: 240px;
   } */
+  &.focused {
+    width: 240px;
+  }
   &::placeholder {
     color: #999;
   }

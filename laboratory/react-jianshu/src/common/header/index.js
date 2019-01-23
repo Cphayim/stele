@@ -2,7 +2,7 @@
  * @Author: Cphayim
  * @Date: 2019-01-22 17:03:40
  * @LastEditors: Cphayim
- * @LastEditTime: 2019-01-23 03:24:44
+ * @LastEditTime: 2019-01-23 20:47:19
  * @Description: Header 组件
  */
 import React from 'react'
@@ -59,8 +59,12 @@ const Header = props => {
 }
 
 const mapStateToProps = state => {
+  /**
+   * 这里的 state 是全局的 state，我们需要使用的是 state 下 header 中的数据
+   */
+  const headerState = state.get('header')
   return {
-    focused: state.header.focused
+    focused: headerState.get('focused')
   }
 }
 

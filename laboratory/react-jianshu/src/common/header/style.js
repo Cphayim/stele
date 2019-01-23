@@ -2,7 +2,7 @@
  * @Author: Cphayim
  * @Date: 2019-01-22 17:06:32
  * @LastEditors: Cphayim
- * @LastEditTime: 2019-01-23 03:29:42
+ * @LastEditTime: 2019-01-24 04:22:00
  * @Description: Header 依赖的样式组件
  */
 import styled from 'styled-components'
@@ -18,7 +18,7 @@ export const HeaderWrapper = styled.div`
   position: relative;
   max-width: ${headerWrapperMaxWidth}px;
   min-width: ${headerWrapperMinWidth}px;
-  height: ${headerHeight}px;
+  height: ${headerHeight + 1}px; /* 因 box-sizing: border-box 包含了 border */
   margin: auto;
   border-bottom: 1px solid #f0f0f0;
 `
@@ -29,7 +29,7 @@ export const Logo = styled.a`
   left: 0;
   display: block;
   width: 100px;
-  height: ${headerHeight - 1}px;
+  height: ${headerHeight}px;
   background: url(${logoPic});
   background-size: contain;
 `
@@ -43,7 +43,7 @@ export const Nav = styled.div`
 
 export const NavItem = styled.div`
   padding: 0 15px;
-  line-height: 56px;
+  line-height: ${headerHeight}px;
   font-size: 17px;
   color: #333;
 
@@ -65,7 +65,7 @@ export const NavSearchWrapper = styled.div`
   position: relative;
   float: left;
 
-  .iconfont {
+  .zoom {
     position: absolute;
     right: 5px;
     bottom: 4px;
@@ -73,13 +73,12 @@ export const NavSearchWrapper = styled.div`
     line-height: 30px;
     border-radius: 15px;
     text-align: center;
-    transition: all .2s linear;
+    transition: all 0.2s linear;
     &.focused {
       background-color: #777;
       color: #fff;
     }
   }
-
 `
 
 export const NavSearch = styled.input.attrs({
@@ -108,13 +107,16 @@ export const NavSearch = styled.input.attrs({
   }
   /* 方案二 */
 
-  &.slide-enter, &.slide-appear {
+  &.slide-enter,
+  &.slide-appear {
     transition: all 0.2s ease-out;
   }
-  &.slide-enter-active,&.slide-appear-active  {
+  &.slide-enter-active,
+  &.slide-appear-active {
     width: 240px;
   }
-  &.slide-enter-done, &.slide-appear-done {
+  &.slide-enter-done,
+  &.slide-appear-done {
     width: 240px;
   }
   &.slide-exit {
@@ -128,11 +130,61 @@ export const NavSearch = styled.input.attrs({
   }
 `
 
+export const SearchInfo = styled.div`
+  position: absolute;
+  left: 0;
+  top: ${headerHeight}px;
+  width: 280px;
+  /* height: 300px; */
+  padding: 0 20px;
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+`
+
+export const SearchInfoTitle = styled.div`
+  margin-top: 20px;
+  margin-bottom: 15px;
+  line-height: 20px;
+  font-size: 14px;
+  color: #969696;
+`
+
+export const SearchInfoSwitch = styled.span`
+  float: right;
+  font-size: 13px;
+
+  .spin {
+    display: inline-block;
+    margin: 2px;
+    font-size: 12px;
+    transform: rotate(0deg);
+    transform-origin: center center;
+    transition: all 0.5s ease-in-out;
+  }
+`
+
+export const SearchInfoList = styled.div`
+  overflow: hidden;
+`
+
+export const SearchInfoItem = styled.a`
+  float: left;
+  display: block;
+  padding: 0 5px;
+  border: 1px solid #b4b4b4;
+  border-radius: 3px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  line-height: 20px;
+  font-size: 12px;
+  color: #787878;
+`
+
 export const Addition = styled.div`
   position: absolute;
   right: 0;
   top: 0;
-  height: 56px;
+  height: ${headerHeight}px;
 `
 
 export const Button = styled.div`

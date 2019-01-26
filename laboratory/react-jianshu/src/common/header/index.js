@@ -2,10 +2,11 @@
  * @Author: Cphayim
  * @Date: 2019-01-22 17:03:40
  * @LastEditors: Cphayim
- * @LastEditTime: 2019-01-24 04:20:24
+ * @LastEditTime: 2019-01-26 00:09:48
  * @Description: Header 组件
  */
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
 import { CSSTransition } from 'react-transition-group'
@@ -74,7 +75,9 @@ class Header extends Component {
 
     return (
       <HeaderWrapper>
-        <Logo href={'/'} />
+        <Link to={'/'}>
+          <Logo />
+        </Link>
         <Nav>
           {/* 按钮 */}
           <NavItem className="left active" children={'首页'} />

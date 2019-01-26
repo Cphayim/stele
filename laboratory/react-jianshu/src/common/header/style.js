@@ -2,7 +2,7 @@
  * @Author: Cphayim
  * @Date: 2019-01-22 17:06:32
  * @LastEditors: Cphayim
- * @LastEditTime: 2019-01-24 04:22:00
+ * @LastEditTime: 2019-01-26 00:09:06
  * @Description: Header 依赖的样式组件
  */
 import styled from 'styled-components'
@@ -23,7 +23,7 @@ export const HeaderWrapper = styled.div`
   border-bottom: 1px solid #f0f0f0;
 `
 
-export const Logo = styled.a`
+export const Logo = styled.div`
   position: absolute;
   top: 0;
   left: 0;

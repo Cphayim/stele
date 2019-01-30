@@ -2,7 +2,7 @@
  * @Author: Cphayim
  * @Date: 2019-01-25 15:22:17
  * @LastEditors: Cphayim
- * @LastEditTime: 2019-01-26 00:06:46
+ * @LastEditTime: 2019-01-30 17:23:06
  * @Description:
  */
 import React, { Component } from 'react'
@@ -19,7 +19,7 @@ class List extends Component {
     return (
       <div>
         {list.map(item => (
-          <Link to={'/detail/' + item.get('id')} key={item.get('id')}>
+          <Link to={'/detail/' + item.get('id') + '?id=' + item.get('id')} key={item.get('id')}>
             <ListItem>
               <img className="pic" src={item.get('imgUrl')} alt={item.get('title')} />
               <ListInfo>

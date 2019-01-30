@@ -2,7 +2,7 @@
  * @Author: Cphayim
  * @Date: 2019-01-23 21:42:30
  * @LastEditors: Cphayim
- * @LastEditTime: 2019-01-25 23:09:23
+ * @LastEditTime: 2019-01-30 12:13:40
  * @Description:
  */
 import Mock from 'mockjs'
@@ -53,5 +53,22 @@ export default () => {
   Mock.mock(/\/homeList.json(\?.*)?/, {
     ...basicStruct,
     data: () => getArticleList()
+  })
+
+  Mock.mock(/\/detail.json(\?.*)?/, {
+    ...basicStruct,
+    data: () => ({
+      title: Mock.Random.cword(5, 20),
+      content: `
+      <img src="${Mock.Random.image(
+        Mock.Random.integer(100, 2000) + 'x' + Mock.Random.integer(100, 600),
+        Mock.Random.color()
+      )}" alt=""/>
+      <p>${Mock.Random.cparagraph(20, 300)}</p>
+      <p>${Mock.Random.cparagraph(20, 300)}</p>
+      <p>${Mock.Random.cparagraph(20, 300)}</p>
+      <p>${Mock.Random.cparagraph(20, 300)}</p>
+      `
+    })
   })
 }

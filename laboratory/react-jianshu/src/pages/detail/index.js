@@ -2,11 +2,12 @@
  * @Author: Cphayim
  * @Date: 2019-01-25 15:04:22
  * @LastEditors: Cphayim
- * @LastEditTime: 2019-01-30 17:24:08
+ * @LastEditTime: 2019-02-01 01:22:41
  * @Description:
  */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import { actionCreators } from './store'
 import { DetailWrapper, Header, Content } from './style'
@@ -43,4 +44,4 @@ const mapDispatch = dispatch => ({
 export default connect(
   mapState,
   mapDispatch
-)(Detail)
+)(withRouter(Detail))

@@ -2,7 +2,7 @@
  * @Author: Cphayim
  * @Date: 2019-01-22 17:03:40
  * @LastEditors: Cphayim
- * @LastEditTime: 2019-02-01 00:51:03
+ * @LastEditTime: 2019-02-01 01:07:07
  * @Description: Header 组件
  */
 import React, { Component } from 'react'
@@ -108,10 +108,12 @@ class Header extends Component {
         </Nav>
         {/* 附加按钮 */}
         <Addition>
-          <Button>
-            <i className="iconfont">&#xe615;</i>
-            写文章
-          </Button>
+          <Link to="/write">
+            <Button>
+              <i className="iconfont">&#xe615;</i>
+              写文章
+            </Button>
+          </Link>
           <Button hollow>注册</Button>
         </Addition>
         {/* /附加按钮 */}

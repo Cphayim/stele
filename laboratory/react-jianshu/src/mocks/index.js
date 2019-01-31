@@ -2,7 +2,7 @@
  * @Author: Cphayim
  * @Date: 2019-01-23 21:42:30
  * @LastEditors: Cphayim
- * @LastEditTime: 2019-01-30 12:13:40
+ * @LastEditTime: 2019-02-01 00:53:06
  * @Description:
  */
 import Mock from 'mockjs'
@@ -29,12 +29,12 @@ function getArticleList() {
 }
 
 export default () => {
-  Mock.mock(/\/headerList.json$/, {
+  Mock.mock(/\/headerList$/, {
     ...basicStruct,
     'data|30': ['@cword(2,5)']
   })
 
-  Mock.mock(/\/homeData.json$/, {
+  Mock.mock(/\/homeData$/, {
     ...basicStruct,
     data: {
       bannerImgUrl: `@image(625x270, @color)`,
@@ -50,12 +50,12 @@ export default () => {
     }
   })
 
-  Mock.mock(/\/homeList.json(\?.*)?/, {
+  Mock.mock(/\/homeList(\?.*)?/, {
     ...basicStruct,
     data: () => getArticleList()
   })
 
-  Mock.mock(/\/detail.json(\?.*)?/, {
+  Mock.mock(/\/detail(\?.*)?/, {
     ...basicStruct,
     data: () => ({
       title: Mock.Random.cword(5, 20),
@@ -70,5 +70,13 @@ export default () => {
       <p>${Mock.Random.cparagraph(20, 300)}</p>
       `
     })
+  })
+
+  Mock.mock(/\/login/, {
+    ...basicStruct
+  })
+
+  Mock.mock(/\/logout/, {
+    ...basicStruct
   })
 }

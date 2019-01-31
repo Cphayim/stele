@@ -2,7 +2,7 @@
  * @Author: Cphayim
  * @Date: 2019-01-22 17:06:32
  * @LastEditors: Cphayim
- * @LastEditTime: 2019-01-26 00:09:06
+ * @LastEditTime: 2019-01-31 23:51:39
  * @Description: Header 依赖的样式组件
  */
 import styled from 'styled-components'
@@ -16,6 +16,7 @@ const primaryColor = '#ea6f5a'
 
 export const HeaderWrapper = styled.div`
   position: relative;
+  z-index: 100;
   max-width: ${headerWrapperMaxWidth}px;
   min-width: ${headerWrapperMinWidth}px;
   height: ${headerHeight + 1}px; /* 因 box-sizing: border-box 包含了 border */

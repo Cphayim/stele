@@ -2,7 +2,7 @@
  * @Author: Cphayim
  * @Date: 2019-01-22 17:03:40
  * @LastEditors: Cphayim
- * @LastEditTime: 2019-01-26 00:09:48
+ * @LastEditTime: 2019-02-01 00:51:03
  * @Description: Header 组件
  */
 import React, { Component } from 'react'
@@ -12,6 +12,7 @@ import classNames from 'classnames'
 import { CSSTransition } from 'react-transition-group'
 
 import { actionCreators } from './store'
+import { actionCreators as loginActionCreators } from '../../pages/login/store'
 import {
   HeaderWrapper,
   Logo,
@@ -69,7 +70,7 @@ class Header extends Component {
   }
 
   render() {
-    const { focused, list, handleInputFocus, handleInputBlur } = this.props
+    const { focused, list, handleInputFocus, handleInputBlur, logined } = this.props
     const navSearchClass = classNames({ focused })
     const navSearchIconClass = classNames('iconfont', 'zoom', { focused })
 
@@ -82,7 +83,13 @@ class Header extends Component {
           {/* 按钮 */}
           <NavItem className="left active" children={'首页'} />
           <NavItem className="left" children={'下载App'} />
-          <NavItem className="right" children={'登录'} />
+          {logined ? (
+            <NavItem className="right" children={'退出'} onClick={this.props.logout} />
+          ) : (
+            <Link to="/login">
+              <NavItem className="right" children={'登录'} />
+            </Link>
+          )}
           <NavItem className="right" children={<i className="iconfont">&#xe636;</i>} />
           {/* /按钮 */}
           {/* 搜索框 */}
@@ -124,7 +131,8 @@ const mapStateToProps = state => {
     list: headerState.get('list'),
     pageSize: headerState.get('pageSize'),
     page: headerState.get('page'),
-    totalPage: headerState.get('totalPage')
+    totalPage: headerState.get('totalPage'),
+    logined: state.getIn(['login', 'logined'])
   }
 }
 
@@ -154,6 +162,9 @@ const mapDispatchToProps = dispatch => {
       let originAngle = parseInt(spin.style.transform.replace(/[^\d]/gi, '')) || 0
 
       spin.style.transform = `rotate(${originAngle + 360}deg)`
+    },
+    logout() {
+      dispatch(loginActionCreators.logout())
     }
   }
 }

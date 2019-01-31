@@ -2,7 +2,7 @@
  * @Author: Cphayim
  * @Date: 2019-01-23 16:15:00
  * @LastEditors: Cphayim
- * @LastEditTime: 2019-01-30 11:55:17
+ * @LastEditTime: 2019-01-31 23:44:55
  * @Description:
  */
 import React, { Component, Fragment } from 'react'
@@ -15,6 +15,8 @@ import store from './store'
 
 import Home from './pages/home'
 import Detail from './pages/detail'
+import Login from './pages/login'
+
 import BackTop from './common/backtop'
 
 class App extends Component {
@@ -27,6 +29,7 @@ class App extends Component {
             <Header />
             <Route path="/" exact component={Home} />
             <Route path="/detail/:id" component={Detail} />
+            <Route path="/login" component={Login} />
           </Fragment>
         </Router>
         <BackTop />

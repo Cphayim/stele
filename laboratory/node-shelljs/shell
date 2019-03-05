@@ -1,0 +1,4 @@
+#!/usr/bin/env node  --experimental-modules
+
+const {ls} = require('shelljs')
+ls('-A').forEach(file => console.log(file))

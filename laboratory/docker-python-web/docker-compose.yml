@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  web:
+    # 指定 context 为 . ，将自动寻找 Dockerfile 构建镜像
+    build: .
+    ports:
+      - '5000:5000'
+    # 解决容器的依赖、启动先后的问题
+    depends_on:
+      - redis
+
+  redis:
+    image: 'redis:alpine'

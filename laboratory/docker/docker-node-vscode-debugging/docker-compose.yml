@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  app:
+    image: node:12-alpine
+    working_dir: /code
+    volumes:
+      - .:/code
+    ports:
+      - 3000:3000
+      - 9229:9229 # node debug 监听端口
+
+    command: node --inspect=0.0.0.0 app.js

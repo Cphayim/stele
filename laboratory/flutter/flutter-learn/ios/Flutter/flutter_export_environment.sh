@@ -1,8 +1,8 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=/Users/Cphayim/flutter"
-export "FLUTTER_APPLICATION_PATH=/dev-space/GitHub/stele/laboratory/flutter/hello_world"
-export "FLUTTER_TARGET=/dev-space/GitHub/stele/laboratory/flutter/hello_world/lib/main.dart"
+export "FLUTTER_APPLICATION_PATH=/dev-space/GitHub/stele/laboratory/flutter/flutter-learn"
+export "FLUTTER_TARGET=/dev-space/GitHub/stele/laboratory/flutter/flutter-learn/lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "SYMROOT=${SOURCE_ROOT}/../build/ios"
 export "FLUTTER_FRAMEWORK_DIR=/Users/Cphayim/flutter/bin/cache/artifacts/engine/ios"

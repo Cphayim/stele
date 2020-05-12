@@ -7,13 +7,19 @@ import 'package:flutter_doubanmovie/hot/hotlist/data/HotMovieData.dart';
 import 'package:flutter_doubanmovie/hot/hotlist/item/HotMovieItemWidget.dart';
 
 class HotMoviesListWidget extends StatefulWidget {
+  // 当前城市
+  String curCity;
+
+  HotMoviesListWidget(this.curCity);
+
   @override
   State<StatefulWidget> createState() {
     return HotMoviesListWidgetState();
   }
 }
 
-class HotMoviesListWidgetState extends State<HotMoviesListWidget> with AutomaticKeepAliveClientMixin {
+class HotMoviesListWidgetState extends State<HotMoviesListWidget>
+    with AutomaticKeepAliveClientMixin {
   // 电影列表
   List<HotMovieData> hotMovies = [];
 
@@ -26,7 +32,7 @@ class HotMoviesListWidgetState extends State<HotMoviesListWidget> with Automatic
   void _getData() async {
     List<HotMovieData> serverDataList = [];
     http.Response response = await http.get(
-        'https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E6%B7%B1%E5%9C%B3&start=0&count=10');
+        'https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=${widget.curCity}&start=0&count=10');
     //成功获取数据
     if (response.statusCode == 200) {
       var responseJson = json.decode(response.body);
@@ -48,11 +54,11 @@ class HotMoviesListWidgetState extends State<HotMoviesListWidget> with Automatic
         child: CircularProgressIndicator(),
       );
     } else {
-      return buildList(context);
+      return buildList();
     }
   }
 
-  Widget buildList(BuildContext context) {
+  Widget buildList() {
     // 当 ListView 没有和 AppBar 或 SafeArea 一起使用的时候
     // 头部就会有一个 padding，为了去掉 padding ,可以使用 MediaQuery.removePadding
     return MediaQuery.removePadding(

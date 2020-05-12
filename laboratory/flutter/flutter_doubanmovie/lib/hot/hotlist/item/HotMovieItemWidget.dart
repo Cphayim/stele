@@ -38,6 +38,7 @@ class HotMovieItemWidgetState extends State<HotMovieItemWidget> {
                   Text(
                     widget.hotMovieData.title,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                    overflow: TextOverflow.ellipsis,
                   ),
                   Text(
                     widget.hotMovieData.rating.average.toString(),

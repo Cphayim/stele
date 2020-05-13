@@ -8,7 +8,7 @@ import 'package:flutter_doubanmovie/hot/hotlist/item/HotMovieItemWidget.dart';
 
 class HotMoviesListWidget extends StatefulWidget {
   // 当前城市
-  String curCity;
+  final String curCity;
 
   HotMoviesListWidget(this.curCity);
 
@@ -47,7 +47,21 @@ class HotMoviesListWidgetState extends State<HotMoviesListWidget>
   }
 
   @override
+  void didUpdateWidget(HotMoviesListWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // 当外部传递的 curCity 更新时刷新页面数据
+    print(oldWidget.curCity);
+    print(widget.curCity);
+    if(oldWidget.curCity == widget.curCity) return;
+    setState(() {
+      hotMovies = [];
+    });
+    _getData();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     // 因为 http 请求是异步的，所以这里加一个加载动画
     if (hotMovies == null || hotMovies.isEmpty) {
       return Center(
@@ -87,6 +101,5 @@ class HotMoviesListWidgetState extends State<HotMoviesListWidget>
     这就需要让 HotMoviesListWidgetState mixin AutomaticKeepAliveClientMixin
    */
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 }

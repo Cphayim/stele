@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:flutter_doubanmovie/hot/hotlist/HotMoviesListWidget.dart';
 
 class HotWidget extends StatefulWidget {
@@ -10,10 +12,44 @@ class HotWidget extends StatefulWidget {
 
 class HotWidgetState extends State<HotWidget> {
   // 存储当前城市
-  String curCity = '深圳';
+  String curCity;
+
+  @override
+  void initState() {
+    super.initState();
+    print('HotWidgetState initState');
+    initData();
+  }
+
+  void initData() async {
+    // 获取 prefs（单例）
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String city = prefs.getString('curCity');
+
+    if (city != null && city.isNotEmpty) {
+      setState(() {
+        curCity = city;
+      });
+    } else {
+      setState(() {
+        curCity = '深圳';
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    // 上面从本地存储读取城市数据的操作是异步的，第一次 build 时 curCity 是空的，会报异常，需要处理
+    if (curCity != null && curCity.isNotEmpty) {
+      return buildContent();
+    } else {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+  }
+
+  Widget buildContent() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
@@ -92,10 +128,16 @@ class HotWidgetState extends State<HotWidget> {
     );
   }
 
+  // 跳转到城市选择页
   void _jumpToCitysWidget() async {
     var selectCity =
-        await Navigator.pushNamed(context, '/Citys', arguments: curCity);
+        await Navigator.pushNamed(context, '/citys', arguments: curCity);
     if (selectCity == null) return;
+
+    // 把数据存储起来
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('curCity', selectCity);
+
     setState(() {
       curCity = selectCity;
     });

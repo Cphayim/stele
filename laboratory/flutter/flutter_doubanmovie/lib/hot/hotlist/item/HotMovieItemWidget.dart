@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_doubanmovie/hot/hotlist/data/HotMovieData.dart';
 
 class HotMovieItemWidget extends StatefulWidget {
-  HotMovieData hotMovieData;
+  final HotMovieData hotMovieData;
 
   HotMovieItemWidget(this.hotMovieData);
 

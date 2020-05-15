@@ -38,7 +38,7 @@ class HotMovieData {
     hotMovieData.title = movieDataJson['title'];
 
     List<Cast> casts = [];
-    // try {
+    try {
       for (dynamic castData in movieDataJson['casts']) {
         Avatars avatars = Avatars(castData['avatars']['small'],
             castData['avatars']['large'], castData['avatars']['medium']);
@@ -46,20 +46,21 @@ class HotMovieData {
             Cast(castData['alt'], avatars, castData['name'], castData['id']);
         casts.add(cast);
       }
-    // } catch (e) {}
-
+    } catch (e) {}
     hotMovieData.casts = casts;
 
     hotMovieData.collectCount = movieDataJson['collect_count'];
 
     List<Cast> directors = [];
-    for (dynamic castData in movieDataJson['directors']) {
-      Avatars avatars = Avatars(castData['avatars']['small'],
-          castData['avatars']['large'], castData['avatars']['medium']);
-      Cast cast =
-          Cast(castData['alt'], avatars, castData['name'], castData['id']);
-      directors.add(cast);
-    }
+    try {
+      for (dynamic castData in movieDataJson['directors']) {
+        Avatars avatars = Avatars(castData['avatars']['small'],
+            castData['avatars']['large'], castData['avatars']['medium']);
+        Cast cast =
+            Cast(castData['alt'], avatars, castData['name'], castData['id']);
+        directors.add(cast);
+      }
+    } catch (e) {}
     hotMovieData.directors = directors;
 
     hotMovieData.images = Avatars(movieDataJson['images']['small'],

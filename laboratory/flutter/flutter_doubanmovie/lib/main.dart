@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // showPerformanceOverlay: true,
       title: '豆瓣电影',
       theme: ThemeData(
         primarySwatch: Colors.blue,

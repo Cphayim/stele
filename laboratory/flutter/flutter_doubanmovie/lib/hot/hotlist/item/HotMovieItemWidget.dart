@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_doubanmovie/hot/hotlist/data/HotMovieData.dart';
 
 class HotMovieItemWidget extends StatefulWidget {
@@ -13,6 +14,10 @@ class HotMovieItemWidget extends StatefulWidget {
 }
 
 class HotMovieItemWidgetState extends State<HotMovieItemWidget> {
+  // 添加 MethodChannel 来调用 Native 能力
+  static const MethodChannel methodChannel =
+      MethodChannel('flutter.doubanmovie/buy');
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -73,12 +78,18 @@ class HotMovieItemWidgetState extends State<HotMovieItemWidget> {
                   style: TextStyle(color: Colors.red, fontSize: 14),
                 ),
                 OutlineButton(
-                  child: Text('购票'),
+                  child: Text(
+                    '购票',
+                    style: TextStyle(fontSize: 16),
+                  ),
                   color: Colors.red,
                   textColor: Colors.red,
                   highlightedBorderColor: Colors.red,
                   borderSide: BorderSide(color: Colors.red),
-                  onPressed: () {},
+                  onPressed: () {
+                    methodChannel.invokeMethod(
+                        'buyTicket', '购买 ${widget.hotMovieData.title} 电影票');
+                  },
                 ),
               ],
             ),

@@ -5,8 +5,12 @@ import 'package:flutter_doubanmovie/citys/CitysWidget.dart';
 import 'package:flutter_doubanmovie/hot/HotWidget.dart';
 import 'package:flutter_doubanmovie/mine/MineWidget.dart';
 import 'package:flutter_doubanmovie/movies/MoviesWidget.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() => runApp(MyApp());
+
+CityModel cityModel = CityModel();
 
 class MyApp extends StatelessWidget {
   @override
@@ -19,7 +23,14 @@ class MyApp extends StatelessWidget {
       ),
       home: MyHomePage(title: '豆瓣电影'),
       routes: {
-        '/citys': (context) => CitysWidget(),
+        '/citys': (context) => ScopedModel(
+              model: cityModel,
+              child: ScopedModelDescendant<CityModel>(
+                builder: (context, child, model) {
+                  return CitysWidget();
+                },
+              ),
+            ),
       },
     );
   }
@@ -45,7 +56,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       // appBar: AppBar(title: Text(widget.title)),
-      body: SafeArea(child: _widgetItems[_selectedIndex]),
+      body: ScopedModel<CityModel>(
+        model: cityModel,
+        child: SafeArea(child: _widgetItems[_selectedIndex]),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.school), title: Text('热映')),
@@ -65,5 +79,36 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+}
+
+class CityModel extends Model {
+  String curCity;
+
+  CityModel() {
+    initData();
+  }
+
+  void initData() async {
+    final prefs = await SharedPreferences.getInstance();
+    String city = prefs.getString('curCity');
+
+    if (city != null && city.isNotEmpty) {
+      setCurCity(city);
+    } else {
+      setCurCity('深圳');
+    }
+  }
+
+  void setCurCity(String city) {
+    if (city != curCity) {
+      curCity = city;
+      // 通知状态发生变化
+      notifyListeners();
+    }
+  }
+
+  static CityModel of(BuildContext context) {
+    return ScopedModel.of<CityModel>(context);
   }
 }

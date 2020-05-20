@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_doubanmovie/main.dart';
 
 class CitysWidget extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class CitysWidgetState extends State<CitysWidget> {
   @override
   Widget build(BuildContext context) {
     // 从路由传参中获取当前城市
-    curCity = ModalRoute.of(context).settings.arguments;
+    curCity = CityModel.of(context).curCity;
 
     List<String> hotCitys = [
       '北京',

@@ -1,16 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_doubanmovie/main.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter_doubanmovie/hot/hotlist/data/HotMovieData.dart';
 import 'package:flutter_doubanmovie/hot/hotlist/item/HotMovieItemWidget.dart';
 
 class HotMoviesListWidget extends StatefulWidget {
-  // 当前城市
-  final String curCity;
-
-  HotMoviesListWidget(this.curCity);
+  HotMoviesListWidget() {}
 
   @override
   State<StatefulWidget> createState() {
@@ -26,13 +24,22 @@ class HotMoviesListWidgetState extends State<HotMoviesListWidget>
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    setState(() {
+      hotMovies = [];
+    });
     _getData();
   }
 
   void _getData() async {
     List<HotMovieData> serverDataList = [];
     http.Response response = await http.get(
-        'https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=${widget.curCity}&start=0&count=10');
+        'https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=${CityModel.of(context)}&start=0&count=10');
     //成功获取数据
     if (response.statusCode == 200) {
       var responseJson = json.decode(response.body);
@@ -46,18 +53,18 @@ class HotMoviesListWidgetState extends State<HotMoviesListWidget>
     }
   }
 
-  @override
-  void didUpdateWidget(HotMoviesListWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    // 当外部传递的 curCity 更新时刷新页面数据
-    print(oldWidget.curCity);
-    print(widget.curCity);
-    if(oldWidget.curCity == widget.curCity) return;
-    setState(() {
-      hotMovies = [];
-    });
-    _getData();
-  }
+  // @override
+  // void didUpdateWidget(HotMoviesListWidget oldWidget) {
+  //   super.didUpdateWidget(oldWidget);
+  //   // 当外部传递的 curCity 更新时刷新页面数据
+  //   print(oldWidget.curCity);
+  //   print(widget.curCity);
+  //   if(oldWidget.curCity == widget.curCity) return;
+  //   setState(() {
+  //     hotMovies = [];
+  //   });
+  //   _getData();
+  // }
 
   @override
   Widget build(BuildContext context) {

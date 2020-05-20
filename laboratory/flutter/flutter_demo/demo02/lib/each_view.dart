@@ -1,0 +1,30 @@
+/*
+ * @Author: Cphayim
+ * @Date: 2020-05-20 15:30:32
+ * @LastEditTime: 2020-05-20 15:33:21
+ * @Description:
+ */
+import 'package:flutter/material.dart';
+
+class EachView extends StatefulWidget {
+  final String _title;
+
+  EachView(this._title);
+
+  @override
+  _EachViewState createState() => _EachViewState();
+}
+
+class _EachViewState extends State<EachView> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget._title),
+      ),
+      body: Center(
+        child: Text(widget._title),
+      ),
+    );
+  }
+}

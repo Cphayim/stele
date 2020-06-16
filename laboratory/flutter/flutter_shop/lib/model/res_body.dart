@@ -1,26 +1,26 @@
 /*
  * @Author: Cphayim
  * @Date: 2020-06-05 16:22:14
- * @LastEditTime: 2020-06-05 16:27:22
+ * @LastEditTime: 2020-06-10 14:28:58
  * @Description:
  */
 import 'dart:convert';
 
-class ResBody {
+class ResBody<T> {
+  int code;
+  String msg;
+  T data;
+
   ResBody({
     this.code,
     this.msg,
     this.data,
   });
 
-  int code;
-  String msg;
-  dynamic data;
-
   ResBody copyWith({
     int code,
     String msg,
-    dynamic data,
+    T data,
   }) =>
       ResBody(
         code: code ?? this.code,

@@ -1,7 +1,7 @@
 /*
  * @Author: Cphayim
  * @Date: 2020-06-05 17:02:23
- * @LastEditTime: 2020-06-09 17:26:30
+ * @LastEditTime: 2020-06-10 14:26:31
  * @Description: 自定义 dio 实例
  */
 import 'package:dio/dio.dart';
@@ -17,5 +17,5 @@ BaseOptions _options = BaseOptions(
 Dio myDio = Dio()
   ..options = _options
   ..interceptors.add(ResponseInterceptor())
-  ..interceptors.add(ExceptionInterceptor())
-  ..interceptors.add(LogInterceptor());
+  ..interceptors.add(LogInterceptor())
+  ..interceptors.add(ExceptionInterceptor());

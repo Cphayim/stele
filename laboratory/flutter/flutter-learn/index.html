@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      :root {
+        --sphere-size: 400px;
+        --loop-size: 600px;
+        --border-size: 1px;
+        --item-size: 80px;
+        --content-font-size: 40px;
+
+        --loop-angle: rotateX(45deg);
+
+        --loop-init-transform: var(----loop-angle);
+
+        --item1-init-transform: translate(-50%, -50%);
+        --item2-init-transform: translate(-50%, -50%);
+        --item3-init-transform: translate(50%, -50%);
+        --item4-init-transform: translate(-50%, -50%);
+      }
+      body {
+        transform-style: preserve-3d;
+        width: 100vw;
+        height: 100vh;
+        background-color: #f1f1f1;
+      }
+      .center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .sphere {
+        width: var(--sphere-size);
+        height: var(--sphere-size);
+        border-radius: 50%;
+        background-color: #599adb;
+        opacity: .5;
+      }
+
+      .loop-wrap {
+        transform-style: preserve-3d;
+        perspective: 400vw;
+        perspective-origin: 50% -200%;
+      }
+      .loop {
+        width: var(--loop-size);
+        height: var(--loop-size);
+        border: var(--border-size) solid #6699cc;
+        border-radius: 50%;
+        transform: rotateX(90deg);
+      }
+      .item-wrap {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: var(--item-size);
+        height: var(--item-size);
+        transform-style: preserve-3d;
+        animation: r infinite 4s linear;
+      }
+      .item-wrap:nth-of-type(1){
+        animation-delay: 0s;
+      }
+      .item-wrap:nth-of-type(2){
+        animation-delay: 1s;
+      }
+      .item-wrap:nth-of-type(3){
+        animation-delay: 2s;
+      }
+      .item-wrap:nth-of-type(4){
+        animation-delay: 3s;
+      }
+      .item {
+        position: absolute;
+        width: var(--item-size);
+        height: var(--item-size);
+        background-color: #e97038;
+        font-size: var(--content-font-size);
+        line-height: var(--item-size);
+        text-align: center;
+        color: #fff;
+        border-radius: 50%;
+        transform: rotateY(-180deg) translateZ(300px);
+        /* animation: item-r infinite 4s linear; */
+      }
+      .item-wrap:nth-of-type(1) .item{
+        animation-delay: 0s;
+      }
+      .item-wrap:nth-of-type(2) .item{
+        animation-delay: 1s;
+      }
+      .item-wrap:nth-of-type(3) .item{
+        animation-delay: 2s;
+      }
+      .item-wrap:nth-of-type(4) .item{
+        animation-delay: 3s;
+      }
+      @keyframes r {
+        from {
+          transform: translate(-50%, -50%) rotateY(0deg);
+        }
+        to{
+          transform: translate(-50%, -50%) rotateY(-360deg);
+        }
+      }
+      @keyframes item-r {
+        0% {
+          transform: translateZ(300px) rotateY(-180deg) scale(1);
+        }
+        25% {
+          transform: translateZ(300px) rotateY(-90deg) scale(.8);
+        }
+        50% {
+          transform: translateZ(300px) rotateY(0deg) scale(.7);
+        }
+        75% {
+          transform: translateZ(300px) rotateY(90deg) scale(.8);
+        }
+        100% {
+          transform: translateZ(300px) rotateY(180deg) scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sphere center"></div>
+    <div class="loop-wrap center">
+      <div class="item-wrap">
+        <div class="item">1</div>
+      </div>
+      <div class="item-wrap">
+        <div class="item">2</div>
+      </div>
+      <div class="item-wrap">
+        <div class="item">3</div>
+      </div>
+      <div class="item-wrap">
+        <div class="item">4</div>
+      </div>
+      <div class="loop">
+
+      </div>
+    </div>
+  </body>
+</html>

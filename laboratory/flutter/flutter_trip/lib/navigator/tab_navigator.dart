@@ -1,7 +1,7 @@
 /*
  * @Author: Cphayim
  * @Date: 2020-06-22 16:09:47
- * @LastEditTime: 2020-06-28 17:01:46
+ * @LastEditTime: 2020-06-29 09:43:58
  * @Description:
  */
 import 'package:flutter/material.dart';
@@ -39,10 +39,17 @@ class _TabNavigatorState extends State<TabNavigator> {
       // 页面视图
       body: PageView(
         controller: _controller,
+        physics: NeverScrollableScrollPhysics(),
+        onPageChanged: (int index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
         children: _tabs.map((tabItemData) => tabItemData.page).toList(),
       ),
       // 底部 tab 栏
       bottomNavigationBar: BottomNavigationBar(
+        selectedFontSize: 12.0,
         currentIndex: _currentIndex,
         onTap: (index) {
           _controller.jumpToPage(index);

@@ -1,7 +1,7 @@
 /*
  * @Author: Cphayim
  * @Date: 2020-06-22 16:09:47
- * @LastEditTime: 2020-06-29 09:43:58
+ * @LastEditTime: 2020-07-10 15:22:51
  * @Description:
  */
 import 'package:flutter/material.dart';
@@ -28,7 +28,8 @@ class _TabNavigatorState extends State<TabNavigator> {
 
   final List<TabItemData> _tabs = [
     TabItemData(title: '首页', iconData: Icons.home, page: HomePage()),
-    TabItemData(title: '搜索', iconData: Icons.search, page: SearchPage()),
+    TabItemData(
+        title: '搜索', iconData: Icons.search, page: SearchPage(hideLeft: true)),
     TabItemData(title: '旅拍', iconData: Icons.camera_alt, page: TravelPage()),
     TabItemData(title: '我的', iconData: Icons.person, page: MyPage()),
   ];

@@ -1,10 +1,11 @@
 /*
  * @Author: Cphayim
  * @Date: 2020-06-30 15:33:11
- * @LastEditTime: 2020-07-02 16:34:21
+ * @LastEditTime: 2020-07-03 10:50:07
  * @Description:
  */
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
@@ -66,6 +67,7 @@ class _WebViewState extends State<WebView> {
             if (widget.backForbid) {
               webviewReference.launch(widget.url);
             } else {
+              webviewReference.close();
               Navigator.pop(context);
               _exiting = true;
             }
@@ -141,13 +143,17 @@ class _WebViewState extends State<WebView> {
     if (widget.hideAppBar ?? false) {
       return Container(
         // color: backgroundColor,
-        // height: 40,
+        // 设为状态栏高度
+        height: MediaQueryData.fromWindow(window).padding.top,
       );
       // return null;
     }
     return Container(
       color: backgroundColor,
-      padding: EdgeInsets.fromLTRB(0, 40, 0, 10),
+      alignment: AlignmentDirectional.center,
+      padding:
+          EdgeInsets.only(top: MediaQueryData.fromWindow(window).padding.top),
+      height: MediaQueryData.fromWindow(window).padding.top + 50,
       // 撑满屏幕宽度
       child: FractionallySizedBox(
         widthFactor: 1,
@@ -156,7 +162,9 @@ class _WebViewState extends State<WebView> {
             // 左侧按钮
             GestureDetector(
               onTap: () {
+                webviewReference.close();
                 Navigator.pop(context);
+                _exiting = true;
               },
               child: Container(
                 margin: EdgeInsets.only(left: 10),
@@ -189,9 +197,5 @@ class _WebViewState extends State<WebView> {
       }
     }
     return contain;
-  }
-
-  Widget _safeArea(Widget child) {
-    return SafeArea(child: child);
   }
 }

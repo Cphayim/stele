@@ -1,7 +1,7 @@
 /*
  * @Author: Cphayim
  * @Date: 2020-06-30 11:21:56
- * @LastEditTime: 2020-07-01 10:00:57
+ * @LastEditTime: 2020-07-02 16:47:21
  * @Description:
  */
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class LocalNav extends StatelessWidget {
       height: 64,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(6)),
+        borderRadius: BorderRadius.circular(6),
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 7),
